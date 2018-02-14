@@ -1,0 +1,3 @@
+-e git+https://github.com/oudalab/petrarch3.git#egg=petrarch3
+python-dateutil==2.2
+six==1.11.0

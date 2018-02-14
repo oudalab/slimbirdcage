@@ -1,0 +1,14 @@
+pip3 install --user virtualenv
+python3 -m virtualenv -p python3 venv
+
+## Set up environment
+source venv/bin/activate
+pip3 install -r requirements.txt 
+
+
+## To test
+sqlite3 ~solaimani/data/DISK1_CORENLP_RUN1.db_petrarch_done.db 'select phrases from petrarch_table limit 1' | parallel --no-notice --pipe python3 birdcage.py --data '-'
+
+
+
+sqlite3 ~solaimani/data/DISK1_CORENLP_RUN1.db_petrarch_done.db "select json_object('docid', doc_id, 'phrases', phrases, 'mongo_id', mongo_id, 'date', date) from petrarch_table limit 1" | parallel --no-notice --pipe python3 birdcage.py --data '-'
