@@ -11,8 +11,8 @@ sqlite3 ~solaimani/data/DISK1_CORENLP_RUN1.db_petrarch_done.db 'select phrases f
 
 
 
-sqlite3 ~solaimani/data/DISK1_CORENLP_RUN1.db_petrarch_done.db "select json_object('docid', doc_id, 'phrases', phrases, 'mongo_id', mongo_id, 'date', date) from petrarch_table limit 1" | parallel --no-notice --pipe python3 birdcage.py --data '-'
+sqlite3 ~solaimani/data/DISK1_CORENLP_RUN1.db_petrarch_done.db "select json_object('doc_id', doc_id, 'phrases', phrases, 'mongo_id', mongo_id, 'date', date) from petrarch_table limit 1" | parallel --no-notice --pipe python3 birdcage.py --data '-'
 
 # Multi core
-sqlite3 ~solaimani/data/DISK1_CORENLP_RUN1.db_petrarch_done.db "select json_object('docid', doc_id, 'phrases', phrases, 'mongo_id', mongo_id, 'date', date) from petrarch_table limit 5" | parallel --no-notice --sshloginfile myservers --workdir ...  --pipe python3 birdcage.py --data '-'
+sqlite3 ~solaimani/data/DISK1_CORENLP_RUN1.db_petrarch_done.db "select json_object('doc_id', doc_id, 'phrases', phrases, 'mongo_id', mongo_id, 'date', date) from petrarch_table limit 5" | parallel --no-notice --sshloginfile myservers --workdir ...  --pipe python3 birdcage.py --data '-'
 
