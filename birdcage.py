@@ -43,7 +43,7 @@ def main(param, data):
      
         # Output to stdout / write to mongo
         if events:
-            print("{}".format(events))
+            print("{}".format(json.dumps(events)))
 
 
 
