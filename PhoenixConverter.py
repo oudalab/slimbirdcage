@@ -189,8 +189,9 @@ class PhoenixConverter:
             phoenixDict["source"] = additional_info.get("source", "")
             phoenixDict["url"] = additional_info.get("url", "")
 
-            phoenixDict["doc_id"] = event_dict[docid].get('doc_id', None)
-            phoenixDict["mongo_id"] = event_dict[docid].get('mongo_id', None)
+            # logging.warning(f"event_dict: {event_dict[docid].keys()}")
+            phoenixDict["doc_id"] = event_dict.get('doc_id', None)
+            phoenixDict["mongo_id"] = event_dict.get('mongo_id', None)
 
             events = []
 
@@ -201,6 +202,7 @@ class PhoenixConverter:
                         info = sents[s]
                         if "meta" in info.keys():
                             meta = info["meta"]
+                            # FIXME why is the dictionary redefined? do we need the code above?
                             phoenixDict = {}
                             if (('actorroot' in meta) and (len(meta['actorroot'].keys()) > 0)):
                                 phoenixDict["code"] = list(meta['actorroot'].keys())[0][2]
@@ -223,6 +225,8 @@ class PhoenixConverter:
                             phoenixDict["day"] = date8[6:]
                             phoenixDict["source"] = additional_info.get("source", "")
                             phoenixDict["url"] = additional_info.get("url", "")
+                            phoenixDict["doc_id"] = event_dict[docid].get('doc_id', None)
+                            phoenixDict["mongo_id"] = event_dict[docid].get('mongo_id', None)
                             events.append(phoenixDict)
                     except Exception as e:
                         logging.exception(e)

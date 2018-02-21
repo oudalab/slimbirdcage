@@ -44,6 +44,7 @@ def main(param, data):
         # Output to stdout / write to mongo
         if events:
             for event in events:
+                # Add the doc_id and sent_id
                 print(f"{json.dumps(event)}")
 
 
