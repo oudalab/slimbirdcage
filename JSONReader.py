@@ -4,9 +4,9 @@
 
 import json
 import logging
+import re
 import sys
 
-from dateutil import parser
 from datetime import datetime
 from dateutil import parser
 
@@ -27,14 +27,23 @@ def read_json(article_main):
         if ('date' not in article_main) or (len(article_main['date']) == 0):
             dateObject = datetime.now()
             article_date = parser.parse(dateObject).strftime('%Y%m%d')
+        elif article_main['date'].count(',') > 1:
+            # Weird edge case: e.g. "May 24, 1987 Sunday, FINAL EDITION"
+            dateObject = article_main['date'][:article_main['date'].rfind(',')]
+            article_date = parser.parse(dateObject).strftime('%Y%m%d')
         else:
-            logging.info("{}".format(article_main))
-            dateObject = article_main['date']
+            match = re.match(r'(.* \d\d\d\d.*day).+', article_main['date'], re.IGNORECASE)
+            if match:
+                # Weird edge case: e.g. "MAY 27, 2004 Thursday METRO FINAL EDITION"
+                dateObject = match.group(1)
+            else:
+                # Normal case
+                dateObject = article_main['date']
             article_date = parser.parse(dateObject).strftime('%Y%m%d')
 
         article = json.loads(article_main['phrases'], encoding='utf-8')
 
-        entry_id = article_main['doc_id']
+        entry_id = article_main.get('doc_id', None)
         
         sent_dict = {}
         meta_content = {'date': article_date}
@@ -55,12 +64,10 @@ def read_json(article_main):
         content_dict = {'sents': sent_dict,
                         'meta': meta_content,
                         'doc_id': entry_id,
-                        'mongo_id': article_main['mongo_id']}
+                        'mongo_id': article_main.get('mongo_id', None)}
         holding[entry_id] = content_dict
         return holding
     except Exception as e:
-        logging.error(e)
-        logging.error(e.args)
-        logging.error(sys.exc_info()[0])
+        logging.exception(e)
 
         return {}

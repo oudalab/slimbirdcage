@@ -158,8 +158,8 @@ class PhoenixConverter:
     def format(self, event_dict, additional_info={}):
         try:
             if len(event_dict) == 0:
+                logging.warning(f"Empty Keys: {event_dict.keys()}")
                 return {}
-            logging.warning(event_dict.keys())
 
             docid = list(event_dict.keys())[0]
 
