@@ -44,7 +44,7 @@ def main(param, data):
         # Output to stdout / write to mongo
         if events:
             for event in events:
-                print("{json.dumps(event)}")
+                print(f"{json.dumps(event)}")
 
 
 if __name__ == '__main__':
