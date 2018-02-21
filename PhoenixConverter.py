@@ -185,6 +185,9 @@ class PhoenixConverter:
             phoenixDict["source"] = additional_info.get("source", "")
             phoenixDict["url"] = additional_info.get("url", "")
 
+            phoenixDict["doc_id"] = event_dict[docid].get('doc_id', None)
+            phoenixDict["mongo_id"] = event_dict[docid].get('mongo_id', None)
+
             events = []
 
             if (sents != None):
@@ -225,25 +228,6 @@ class PhoenixConverter:
             logging.error(e)
             return []
 
-# sourceFile = "/Volumes/Untitled 2/Users/sayeed/July_Dataset/20170704.json"
-# destinationFile = "test_phoenix.txt"
-# # geoUrl = raw_input("Enter the url to access Clavin Cliff server: ")
-# # geoPort = raw_input("Enter the port number to access Clavin Cliff server: ")
-#
-# fhand = open(sourceFile)
-# fhand2 = open(destinationFile, 'w+')
-# formatter = PhoenixConverter(geo_ip="149.165.168.205")
-# count = 0
-# for line in fhand:
-#     line = ast.literal_eval(line)
-#
-#     petrarch = ast.literal_eval(line["petrarch"])
-#
-#     events = formatter.format(petrarch)
-#
-#     print len(events)
-#
-#     print events
 
 def getopts(argv):
     opts = {}  # Empty dictionary to store key-value pairs.

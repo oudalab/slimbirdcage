@@ -43,8 +43,8 @@ def main(param, data):
      
         # Output to stdout / write to mongo
         if events:
-            print("{}".format(json.dumps(events)))
-
+            for event in events:
+                print("{json.dumps(event)}")
 
 
 if __name__ == '__main__':

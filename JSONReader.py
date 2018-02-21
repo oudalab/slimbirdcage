@@ -54,6 +54,7 @@ def read_json(article_main):
 
         content_dict = {'sents': sent_dict,
                         'meta': meta_content,
+                        'doc_id': entry_id,
                         'mongo_id': article_main['mongo_id']}
         holding[entry_id] = content_dict
         return holding
@@ -61,6 +62,5 @@ def read_json(article_main):
         logging.error(e)
         logging.error(e.args)
         logging.error(sys.exc_info()[0])
-        raise e
 
         return {}
