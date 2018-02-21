@@ -221,11 +221,12 @@ class PhoenixConverter:
                             phoenixDict["url"] = additional_info.get("url", "")
                             events.append(phoenixDict)
                     except Exception as e:
-                        logging.error(e)
+                        logging.exception(e)
             return events
 
         except Exception as e :
             logging.error(e)
+            logging.exception(e)
             return []
 
 
