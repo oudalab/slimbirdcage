@@ -35,7 +35,7 @@ class PhoenixConverter:
         self.geo_port = geo_port
         self.iso_country_code = phoenix_data.get("iso_country_code")
 
-        logging.info(f"{self.primary_agent}")
+        # logging.info(f"{self.primary_agent}")
 
 
 
