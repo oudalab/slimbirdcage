@@ -18,7 +18,8 @@ from EventCoder import EventCoder
 try:
     from mordecai import query_mordecai
 except ImportError:
-    logging.warn("Mordecai not installed")
+    #logging.warn("Mordecai not installed")
+    pass 
 
 
 class PhoenixConverter:

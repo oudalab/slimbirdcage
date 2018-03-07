@@ -13,7 +13,8 @@ from dateutil import parser
 try:
     from mordecai import query_mordecai
 except ImportError:
-    logging.warn("Mordecai not installed")
+    #logging.warn("Mordecai not installed")
+    pass
 
 from petrarch3 import utilities
 
