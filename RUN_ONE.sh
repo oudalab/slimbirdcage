@@ -12,7 +12,7 @@ myrun () {
 	#echo $fname
 	#echo $outfile
 	#ls -l $item
-	sqlite3 $item "select json_object('doc_id', doc_id, 'phrases', phrases, 'mongo_id', mongo_id, 'date', date) from petrarch_table" | parallel --no-notice --jobs +0 --pipe "python3 birdcage.py --data '-' >> $outfile"
+	sqlite3 $item "select json_object('doc_id', doc_id, 'phrases', phrases, 'mongo_id', mongo_id, 'date', date) from petrarch_table" | parallel --no-notice --jobs +0 --pipe --block 256M "python3 birdcage.py --data '-' >> $outfile"
 }
 
 for item in ${dbfiles[@]};
