@@ -20,3 +20,20 @@ pip3 instal --user -r requirements.txt
 
 sudo apt install speedtest-cli iperf
 sudo apt install jq
+
+# Acknowledgement 
+
+slimbirdcage makes extensive use of [GNU Parallel](https://www.gnu.org/software/parallel/). Below is the .bib citation.
+
+```latex
+@book{ole2018gnu,
+      author       = {Tange, Ole},
+      title        = {GNU Parallel 2018},
+      publisher    = {Ole Tange},
+      month        = Mar,
+      year         = 2018,
+      ISBN         = {9781387509881},
+      doi          = {10.5281/zenodo.1146014},
+      url          = {https://doi.org/10.5281/zenodo.1146014}
+}
+```
