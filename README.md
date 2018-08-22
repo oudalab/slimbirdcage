@@ -1,5 +1,5 @@
 # slimbirdcage
-A slimer reimplementation of the openventdata/birdcage code
+A slimer reimplementation of the https://github.com/openeventdata/birdcage code
 
 # Dependencies
 
